@@ -20,7 +20,7 @@ jobs:
     - name: Scan for vulnerabilities
       uses: aquasecurity/trivy-action@b77b85c0254bba6789e787844f0585cde1e56320 # v0.8.0 (Trivy v0.34.0)
       with: 
-        image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:release-1.11
+        image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
         format: json
         ignore-unfixed: false
         severity: HIGH,CRITICAL
