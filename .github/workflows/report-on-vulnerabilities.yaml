@@ -29,20 +29,20 @@ jobs:
     - name: Scan for vulnerabilities current version
       uses: aquasecurity/trivy-action@b77b85c0254bba6789e787844f0585cde1e56320
       with:
-        image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref.name }}
+        image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref }}
         format: json
         ignore-unfixed: false
         severity: HIGH,CRITICAL
         output: scan.json
 
-    - name: Scan for vulnerabilities previous verion
-      uses: aquasecurity/trivy-action@b77b85c0254bba6789e787844f0585cde1e56320
-      with:
-        image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$(git describe --tags --abbrev=0 --tags $(git describe --tags)~1)
-        format: json
-        ignore-unfixed: false
-        severity: HIGH,CRITICAL
-        output: scan.json
+#    - name: Scan for vulnerabilities previous verion
+#      uses: aquasecurity/trivy-action@b77b85c0254bba6789e787844f0585cde1e56320
+#      with:
+#        image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$(git describe --tags --abbrev=0 --tags $(git describe --tags)~1)
+#        format: json
+#        ignore-unfixed: false
+#        severity: HIGH,CRITICAL
+#        output: scan.json
 
     - name: Parse scan results
       id: parse-results
